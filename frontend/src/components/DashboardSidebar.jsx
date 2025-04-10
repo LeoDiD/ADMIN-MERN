@@ -1,21 +1,23 @@
 import React from "react";
 import {
   Home,
-  Image,
-  Layers,
-  CheckSquare,
+  PackageSearch,
+  Truck,
+  Users,
   Flag,
   UserCircle,
+  LogOut,
   Box,
 } from "lucide-react";
 
 const navItems = [
   { icon: <Home />, label: "Home" },
-  { icon: <Image />, label: "Gallery" },
-  { icon: <Layers />, label: "Layers" },
-  { icon: <CheckSquare />, label: "Tasks" },
+  { icon: <PackageSearch />, label: "Products" },
+  { icon: <Truck />, label: "Orders" },
+  { icon: <Users />, label: "Customer" },
   { icon: <Flag />, label: "Flags" },
   { icon: <UserCircle />, label: "Profile" },
+  { icon: <LogOut />, label: "Log out" },
 ];
 
 const Sidebar = () => {
@@ -32,7 +34,7 @@ const Sidebar = () => {
           <a
             key={index}
             href="#"
-            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-300 ease-in-out"
+            className="p-2 rounded-lg text-white hover:text-white hover:bg-gray-800 transition-all duration-300 ease-in-out"
             title={item.label}
           >
             {React.cloneElement(item.icon, { className: "w-6 h-6" })}

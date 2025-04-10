@@ -1,15 +1,12 @@
-import React from "react";
-import DashboardSidebar from "./components/DashboardSidebar";
+import React from 'react';
+import Layout from './components/Layout';
 
-const App = () => {
+function App() {
   return (
-    <div className="flex">
-      <DashboardSidebar />
-      <main className="">
-        <h1 className="t">Dashboard Content</h1>
-      </main>
-    </div>
+    <Layout>
+      <h1 className="text-xl font-bold text-center">Welcome to the Dashboard</h1>
+    </Layout>
   );
-};
+}
 
 export default App;

@@ -20,9 +20,9 @@ const navItems = [
 
 const Sidebar = () => {
   return (
-    <aside className="flex flex-col items-center py-6 space-y-8 bg-gray-900 h-screen shadow-md w-16">
+    <aside className="w-16 bg-gray-900 h-full flex flex-col items-center py-6 shadow-md">
       {/* Logo */}
-      <div className="text-white">
+      <div className="text-white mb-6">
         <Box className="w-6 h-6" />
       </div>
 
@@ -32,7 +32,7 @@ const Sidebar = () => {
           <a
             key={index}
             href="#"
-            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 hover:scale-110 transform transition-all duration-300 ease-in-out"
+            className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-300 ease-in-out"
             title={item.label}
           >
             {React.cloneElement(item.icon, { className: "w-6 h-6" })}

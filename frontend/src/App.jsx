@@ -1,10 +1,11 @@
-import React from 'react';
-import Layout from './components/Layout';
+import React from "react";
+import Layout from "./components/Layout";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
     <Layout>
-      <h1 className="text-xl font-bold text-center">Welcome to the Dashboard</h1>
+      <Dashboard />
     </Layout>
   );
 }

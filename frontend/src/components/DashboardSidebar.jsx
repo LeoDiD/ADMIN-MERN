@@ -4,7 +4,7 @@ import {
   PackageSearch,
   Truck,
   Users,
-  Flag,
+  Pencil,
   UserCircle,
   LogOut,
   Box,
@@ -15,7 +15,7 @@ const navItems = [
   { icon: <PackageSearch />, label: "Products" },
   { icon: <Truck />, label: "Orders" },
   { icon: <Users />, label: "Customer" },
-  { icon: <Flag />, label: "Flags" },
+  { icon: <Pencil />, label: "Edit product" },
   { icon: <UserCircle />, label: "Profile" },
   { icon: <LogOut />, label: "Log out" },
 ];

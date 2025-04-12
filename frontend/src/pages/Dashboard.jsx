@@ -1,9 +1,8 @@
 import React from "react";
-import Layout from "../components/Layout";
 
 const Dashboard = () => {
   return (
-    <Layout>
+    <div className="p-6 h-[calc(100vh-64px)] overflow-y-auto">
       <h1 className="text-2xl font-bold mb-6">Welcome, Admin</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -24,7 +23,7 @@ const Dashboard = () => {
           <li>Eggs - 5 left</li>
         </ul>
       </div>
-    </Layout>
+    </div>
   );
 };
 

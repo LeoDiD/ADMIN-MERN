@@ -22,10 +22,10 @@ const navItems = [
 
 const Sidebar = () => {
   return (
-    <aside className="w-16 bg-gray-900 h-full flex flex-col items-center py-6 shadow-md">
+    <aside className="w-16 bg-black-500 h-full flex flex-col items-center py-6 shadow-md">
       {/* Logo */}
       <div className="text-white mb-6">
-        <Box className="w-6 h-6" />
+        <Box className="w-6 h-6 text-white" />
       </div>
 
       {/* Nav */}
@@ -34,10 +34,10 @@ const Sidebar = () => {
           <a
             key={index}
             href="#"
-            className="p-2 rounded-lg text-white hover:text-white hover:bg-gray-800 transition-all duration-300 ease-in-out"
+            className="p-2 rounded-lg text-white hover:text-white hover:bg-gray-700 transition-all duration-300 ease-in-out"
             title={item.label}
           >
-            {React.cloneElement(item.icon, { className: "w-6 h-6" })}
+            {React.cloneElement(item.icon, { className: "w-6 h-6 text-white" })}
           </a>
         ))}
       </nav>

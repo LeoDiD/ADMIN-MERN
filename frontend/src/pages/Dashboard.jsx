@@ -10,10 +10,13 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-gray-800 p-4 rounded shadow flex flex-col border border-gray-700">
           <div className="flex items-center mb-2">
-            <PhilippinePeso className="w-5 h-5 text-white mr-2" />
-            <span className="font-medium">Sales Today</span>
+          <div className="bg-gray-700 p-1.5 rounded-md flex items-center justify-center">
+            <PhilippinePeso className="w-4 h-4 text-white" />
           </div>
-          <span className="text-xl font-bold">₱1,200</span>
+            <span className="text-xl font-medium">Sales</span>
+          </div>
+          <span className="text-4xl font-bold">₱1,200</span>
+          <span className="text-sm text-gray-400">Last 30 days</span>
         </div>
         
         <div className="bg-gray-800 p-4 rounded shadow flex flex-col border border-gray-700">

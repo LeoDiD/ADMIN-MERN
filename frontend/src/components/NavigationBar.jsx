@@ -15,7 +15,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <nav className="bg-black-800 shadow-md px-6 py-3 flex items-center justify-between sticky top-0 z-10">
+    <nav className="bg-black shadow-md px-6 py-3 flex items-center justify-between sticky top-0 z-10">
       <div className="font-bold text-xl text-white">Dashboard</div>
 
       <div className="flex items-center space-x-4">

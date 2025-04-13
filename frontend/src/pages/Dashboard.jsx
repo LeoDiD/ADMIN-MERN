@@ -1,52 +1,49 @@
 import React from "react";
-import { PhilippinePeso } from "lucide-react";
-
+import PointStyleChart from '../components/PointStyleChart';  // Fixed import path
+import { PhilippinePeso, ShoppingCart, Box } from "lucide-react";
 
 const Dashboard = () => {
   return (
-    <div className="p-6 h-full w-full overflow-y-auto bg-gray-900 text-white">
-      <h1 className="text-2xl font-bold mb-6 text-white">Welcome, Admin</h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gray-800 p-4 rounded shadow flex flex-col border border-gray-700">
+    <div className="p-6 h-full w-full overflow-y-auto bg-black text-white">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
+        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
-          <div className="bg-gray-700 p-1.5 rounded-md flex items-center justify-center">
-            <PhilippinePeso className="w-4 h-4 text-white" />
-          </div>
-            <span className="text-xl font-medium">Sales</span>
+            <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
+              <PhilippinePeso className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-xl font-medium ml-2">Sales</span>
           </div>
           <span className="text-4xl font-bold">₱1,200</span>
           <span className="text-sm text-gray-400">Last 30 days</span>
         </div>
         
-        <div className="bg-gray-800 p-4 rounded shadow flex flex-col border border-gray-700">
+        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
-            <span className="mr-2">👥</span>
-            <span className="font-medium">Customers</span>
+            <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
+              <ShoppingCart className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-xl font-medium ml-2">Orders</span>
           </div>
-          <span className="text-xl font-bold">45</span>
+          <span className="text-4xl font-bold">24</span>
+          <span className="text-sm text-gray-400">Last 30 days</span>
         </div>
         
-        <div className="bg-gray-800 p-4 rounded shadow flex flex-col border border-gray-700">
+        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
-            <span className="mr-2">💰</span>
-            <span className="font-medium">Total Sales</span>
+            <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
+              <Box className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-xl font-medium ml-2">Products</span>
           </div>
-          <span className="text-xl font-bold">₱12,500</span>
-        </div>
-        
-        <div className="bg-gray-800 p-4 rounded shadow flex flex-col border border-gray-700">
-          <div className="flex items-center mb-2">
-            <span className="mr-2">📦</span>
-            <span className="font-medium">Products</span>
-          </div>
-          <span className="text-xl font-bold">24</span>
+          <span className="text-4xl font-bold">45</span>
+          <span className="text-sm text-gray-400">In stock</span>
         </div>
       </div>
 
       {/* Placeholder for Chart */}
-      <div className="bg-gray-800 p-6 rounded shadow h-64 border border-gray-700">
-        <span className="text-gray-300">📊 Sales Overview Chart</span>
+      <div style={{ backgroundColor: "#333333" }} className="p-6 rounded shadow h-64 border border-gray-800">
+        <span className="text-gray-300">Monthly Sales Overview</span>
+        <PointStyleChart />
       </div>
 
       {/* Alerts */}

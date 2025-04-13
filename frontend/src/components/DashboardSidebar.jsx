@@ -2,7 +2,7 @@ import React from "react";
 import {
   Home,
   PackageSearch,
-  Truck,
+  ShoppingCart,
   Users,
   Pencil,
   UserCircle,
@@ -13,7 +13,7 @@ import {
 const navItems = [
   { icon: <Home />, label: "Home", path: "/" },
   { icon: <PackageSearch />, label: "Products", path: "/Products" },
-  { icon: <Truck />, label: "Orders", path: "/orders" },
+  { icon: <ShoppingCart />, label: "Orders", path: "/orders" },
   { icon: <Users />, label: "Customer", path: "/customers" },
   { icon: <Pencil />, label: "Edit product", path: "/edit-product" },
   { icon: <UserCircle />, label: "Profile", path: "/profile" },
@@ -22,7 +22,7 @@ const navItems = [
 
 const Sidebar = () => {
   return (
-    <aside className="w-16 bg-gray-800 h-full flex flex-col items-center py-6 shadow-md">
+    <aside style={{ backgroundColor: "#1a1a1a" }} className="w-16 h-full flex flex-col items-center py-6 shadow-md">
       {/* Logo */}
       <div className="text-white mb-6">
         <Box className="w-6 h-6 text-white" />

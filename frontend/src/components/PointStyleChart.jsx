@@ -24,15 +24,56 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'top',
+      labels: {
+        color: 'white',
+        boxWidth: 10,
+        padding: 5,
+        font: {
+          size: 10 // Smaller font size
+        }
+      }
     },
     title: {
-      display: true,
-      text: 'Point Styling Example',
+      display: false // Hide the title since we have one in the container
     },
   },
+  scales: {
+    x: {
+      ticks: {
+        color: 'white',
+        font: {
+          size: 8 // Smaller font size for x-axis
+        }
+      },
+      grid: {
+        color: 'rgba(255, 255, 255, 0.1)'
+      }
+    },
+    y: {
+      ticks: {
+        color: 'white',
+        font: {
+          size: 8 // Smaller font size for y-axis
+        }
+      },
+      grid: {
+        color: 'rgba(255, 255, 255, 0.1)'
+      }
+    }
+  },
+  elements: {
+    line: {
+      borderWidth: 2 // Thinner line
+    },
+    point: {
+      radius: 3, // Smaller points
+      hoverRadius: 5
+    }
+  }
 };
 
 const data = {
@@ -41,10 +82,10 @@ const data = {
     {
       label: 'Styled Points',
       data: [10, 20, 15, 30, 25],
-      borderColor: 'rgb(59, 130, 246)', // Tailwind blue-500
+      borderColor: 'rgb(255, 255, 255)', // Changed to white
       backgroundColor: 'rgb(59, 130, 246)',
       pointStyle: 'rectRot',
-      pointRadius: 10,
+      pointRadius: 8,
       pointHoverRadius: 15,
     },
   ],

@@ -1,9 +1,7 @@
 import React from "react";
 import PointStyleChart from '../components/PointStyleChart';
-// Comment out the problematic import for now
-// import { PolarAreaChart } from '../components/PoChart';
+import PointStyleChart from "../components/PointStyleChart";
 import { PhilippinePeso, ShoppingCart, Box } from "lucide-react";
-import { PolarArea } from "react-chartjs-2";
 
 const Dashboard = () => {
   return (

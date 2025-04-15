@@ -1,6 +1,5 @@
 import React from "react";
 import Sidebar from "./DashboardSidebar";
-import NavigationBar from "./NavigationBar";
 
 const Layout = ({ children }) => {
   return (
@@ -10,7 +9,6 @@ const Layout = ({ children }) => {
 
       {/* Main Content */}
       <div className="flex flex-col flex-1 overflow-hidden">
-        <NavigationBar />
         <main className="flex-1 overflow-y-auto bg-gray-900">
           {children}
         </main>

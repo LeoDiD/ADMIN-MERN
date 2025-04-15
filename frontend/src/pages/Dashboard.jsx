@@ -1,11 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import PointStyleChart from '../components/PointStyleChart';
-import PointStyleChart from "../components/PointStyleChart";
-import { PhilippinePeso, ShoppingCart, Box } from "lucide-react";
+import PolarAreaChart from '../components/PolarAreaChart'; 
+import MinimalBarChart from '../components/MinimalBarChart'; 
+import { PhilippinePeso, ShoppingCart, Box, Search, Sun, Moon, LayoutDashboard } from "lucide-react";
 
 const Dashboard = () => {
+  // Add state for search and dark mode
+  const [showSearchInput, setShowSearchInput] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  
+  // Add toggle functions
+  const toggleSearchInput = () => setShowSearchInput(!showSearchInput);
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
   return (
-    <div className="p-6 h-full w-full overflow-y-auto bg-black text-white">
+    <div className="p-6 h-full w-full overflow-y-auto bg-neutral-900 text-white">
+      {/* Title header with actions */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <div className="flex items-center">
+          <LayoutDashboard className="w-5 h-5 mr-2" /> {/* Icon beside text */}
+     <h2 className="font-medium text-2xl text-white">Dashboard</h2> {/* Smaller text size */}
+</div>
+      </div>
+  
+      <div className="flex items-center space-x-4 mt-4 md:mt-0">
+        <div className="relative flex items-center">
+          {showSearchInput && (
+            <input
+              type="text"
+              placeholder="Search..."
+              className="bg-gray-700 rounded-lg px-3 py-1 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-white"
+              autoFocus
+            />
+          )}
+          <button 
+            onClick={toggleSearchInput}
+            className="p-2 rounded-full hover:bg-gray-700 transition-all duration-300"
+          >
+            <Search className="w-5 h-5 text-white" />
+          </button>
+        </div>
+  
+        <button 
+          onClick={toggleDarkMode}
+          className="p-2 rounded-full hover:bg-gray-700 transition-all duration-300"
+        >
+          {darkMode ? (
+            <Sun className="w-5 h-5 text-yellow-400" />
+          ) : (
+            <Moon className="w-5 h-5 text-white" />
+          )}
+        </button>
+      </div>
+
+      {/* Stats cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
         <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
@@ -16,6 +64,9 @@ const Dashboard = () => {
           </div>
           <span className="text-4xl font-bold">₱1,200</span>
           <span className="text-sm text-gray-400">Last 30 days</span>
+          <div>
+            <MinimalBarChart /> {/* Added the chart here */}
+          </div>
         </div>
         
         <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
@@ -51,11 +102,10 @@ const Dashboard = () => {
           </div>
         </div>
         
-        {/* Second Chart - Placeholder */}
+        {/* Customer Growth Chart */}
         <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow border border-gray-800">
           <span className="text-gray-300 mb-2 block text-sm font-medium">Customer Growth</span>
-          <div className="h-40 w-full flex items-center justify-center text-gray-300">
-            {/* Temporarily replace PolarAreaChart with a placeholder */}
+          <div className="h-52 w-full"> {/* Changed from h-40 to h-52 for more space */}
             <PolarAreaChart />
           </div>
         </div>

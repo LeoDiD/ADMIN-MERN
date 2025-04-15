@@ -1,57 +1,79 @@
-// src/components/PointStyleChart.jsx
 import React from 'react';
+import { PolarArea } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+  RadialLinearScale,
+  ArcElement,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+// Register Chart.js components
+ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
+const PolarAreaChart = () => {
+  const data = {
+    labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+    datasets: [
+      {
+        label: 'Dataset',
+        data: [11, 16, 7, 3, 14],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(75, 192, 192)',
+          'rgb(255, 205, 86)',
+          'rgb(201, 203, 207)',
+          'rgb(54, 162, 235)',
+        ],
+        borderWidth: 0, // Remove borders between segments
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false, // This is crucial for fitting inside the container
+    plugins: {
+      legend: {
+        position: 'top', // Changed from 'right' to 'top' for better space usage
+        align: 'start',
+        labels: {
+          color: 'white',
+          boxWidth: 10,
+          padding: 8,
+          font: { size: 10 }
+        }
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        titleFont: { size: 12 },
+        bodyFont: { size: 11 }
+      }
     },
-    title: {
-      display: true,
-      text: 'Point Styling Example',
-    },
-  },
+    scales: {
+      r: {
+        ticks: {
+          display: true,
+          backdropColor: 'transparent',
+          color: 'rgba(255, 255, 255, 0.7)',
+          font: { size: 8 },
+          z: 1
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)'
+        },
+        angleLines: {
+          color: 'rgba(255, 255, 255, 0.1)'
+        },
+        pointLabels: {
+          color: 'white',
+          font: { size: 9 }
+        }
+      }
+    }
+  };
+
+  return <PolarArea data={data} options={options} />;
 };
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May'],
-  datasets: [
-    {
-      label: 'Styled Points',
-      data: [10, 20, 15, 30, 25],
-      borderColor: 'rgb(59, 130, 246)', // Tailwind blue-500
-      backgroundColor: 'rgb(59, 130, 246)',
-      pointStyle: 'rectRot',
-      pointRadius: 10,
-      pointHoverRadius: 15,
-    },
-  ],
-};
-
-function PointStyleChart() {
-  return <Line options={options} data={data} />;
-}
-
-export default PointStyleChart;
+export default PolarAreaChart;

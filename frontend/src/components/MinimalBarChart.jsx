@@ -1,52 +1,54 @@
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
-  BarElement,
   CategoryScale,
   LinearScale,
+  BarElement,
   Tooltip,
 } from 'chart.js';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
-const data = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-  datasets: [
-    {
-      label: 'Sales',
-      data: [100, 200, 150, 80, 120],
-      backgroundColor: '#3b82f6', // blue-500
-      borderRadius: 4,
-    },
-  ],
-};
+const MiniBarChart = ({ dataSetColor = 'rgb(0, 255, 150)' }) => {
+  const data = {
+    labels: Array(7).fill(''),
+    datasets: [
+      {
+        label: 'Data',
+        data: [5, 8, 6, 4, 7, 9, 6],
+        backgroundColor: dataSetColor,
+        borderRadius: 4,
+        barThickness: 8,
+      },
+    ],
+  };
 
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false, // hide legend
-    },
-    tooltip: {
-      enabled: true,
-    },
-  },
-  scales: {
-    x: {
-      display: false, // hide x-axis
-      grid: {
-        display: false, // hide x grid lines
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: {
+        enabled: false,
+      },
+      legend: {
+        display: false,
       },
     },
-    y: {
-      display: false, // hide y-axis
-      grid: {
-        display: false, // hide y grid lines
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: false,
       },
     },
-  },
+  };
+
+  return (
+    <div style={{ height: '40px' }}>
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
 
-export default function SalesBarMini() {
-  return <Bar data={data} options={options} />;
-}
+export default MiniBarChart;

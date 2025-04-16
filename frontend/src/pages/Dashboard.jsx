@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PointStyleChart from '../components/PointStyleChart';
 import PolarAreaChart from '../components/PolarAreaChart'; 
-import MinimalBarChart from '../components/MinimalBarChart'; 
 import { PhilippinePeso, ShoppingCart, Box, Search, Sun, Moon, LayoutDashboard } from "lucide-react";
 
 const Dashboard = () => {
@@ -14,7 +13,7 @@ const Dashboard = () => {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <div className="p-6 h-full w-full overflow-y-auto bg-neutral-900 text-white">
+    <div style={{ backgroundColor: "#1D1D1D" }} className="p-6 h-full w-full overflow-y-auto text-white">
       {/* Title header with actions */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div className="flex items-center">
@@ -55,9 +54,9 @@ const Dashboard = () => {
 
       {/* Stats cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
-        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
-            <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
+            <div className="p-1.5 rounded-md flex items-center justify-center">
               <PhilippinePeso className="w-4 h-4 text-white" />
             </div>
             <span className="text-xl font-medium ml-2">Sales</span>
@@ -65,11 +64,11 @@ const Dashboard = () => {
           <span className="text-4xl font-bold">₱1,200</span>
           <span className="text-sm text-gray-400">Last 30 days</span>
           <div>
-            <MinimalBarChart /> {/* Added the chart here */}
+             {/* Added the chart here */}
           </div>
         </div>
         
-        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
             <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
               <ShoppingCart className="w-4 h-4 text-white" />
@@ -80,7 +79,7 @@ const Dashboard = () => {
           <span className="text-sm text-gray-400">Last 30 days</span>
         </div>
         
-        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow flex flex-col">
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow flex flex-col">
           <div className="flex items-center mb-2">
             <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
               <Box className="w-4 h-4 text-white" />
@@ -95,7 +94,7 @@ const Dashboard = () => {
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Monthly Sales Chart */}
-        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow border border-gray-800">
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
           <span className="text-gray-300 mb-2 block text-sm font-medium">Monthly Sales Overview</span>
           <div className="h-40 w-full">
             <PointStyleChart />
@@ -103,7 +102,7 @@ const Dashboard = () => {
         </div>
         
         {/* Customer Growth Chart */}
-        <div style={{ backgroundColor: "#333333" }} className="p-4 rounded shadow border border-gray-800">
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
           <span className="text-gray-300 mb-2 block text-sm font-medium">Customer Growth</span>
           <div className="h-52 w-full"> {/* Changed from h-40 to h-52 for more space */}
             <PolarAreaChart />

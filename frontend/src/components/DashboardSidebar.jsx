@@ -22,7 +22,7 @@ const navItems = [
 
 const Sidebar = () => {
   return (
-    <aside className="bg-stone-900 w-16 h-full flex flex-col items-center py-6 shadow-md">
+    <aside style={{ backgroundColor: "#262626" }} className="w-16 h-full flex flex-col items-center py-6 shadow-md">
       {/* Logo */}
       <div className="text-white mb-6">
         <Box className="w-6 h-6 text-white" />

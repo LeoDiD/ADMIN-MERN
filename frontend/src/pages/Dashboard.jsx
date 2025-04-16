@@ -56,10 +56,10 @@ const Dashboard = () => {
       {/* Stats cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
         <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-center"> {/* Changed from items-start to items-center */}
             <div className="flex flex-col">
               <div className="flex items-center mb-2">
-                <div className="p-1.5 rounded-md flex items-center justify-center">
+                <div style={{ backgroundColor: "#444444" }} className="p-1.5 rounded-md flex items-center justify-center">
                   <PhilippinePeso className="w-4 h-4 text-white" />
                 </div>
                 <span className="text-xl font-medium ml-2">Sales</span>
@@ -67,7 +67,7 @@ const Dashboard = () => {
               <span className="text-4xl font-bold">₱1,200</span>
               <span className="text-sm text-gray-400">Last 30 days</span>
             </div>
-            <div className="w-24 h-16">
+            <div className="w-20 h-14 flex items-center"> {/* Added flex and items-center, adjusted size */}
               <MinimalBarChart />
             </div>
           </div>

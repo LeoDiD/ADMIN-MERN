@@ -15,8 +15,8 @@ const Products = () => {
       {/* Title header with actions */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div className="flex items-center">
-          <Package className="w-5 h-5 mr-2" /> {/* Changed to Package icon */}
-          <h2 className="font-medium text-2xl text-white">Product Maintenance</h2> {/* Changed title to Products */}
+          <Package className="w-5 h-5 mr-2" />
+          <h2 className="font-medium text-2xl text-white">Product Maintenance</h2>
         </div>
       
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
@@ -50,12 +50,34 @@ const Products = () => {
         </div>
       </div>
       
+      {/* Action buttons outside of product list container */}
+      <div className="flex flex-col mb-4">
+        <div className="flex items-center space-x-2 mb-2">
+          <button 
+            style={{ backgroundColor: "#1D1D1D" }} 
+            className="px-3 py-1.5 rounded text-white text-sm flex items-center transition-all hover:opacity-90"
+          >
+            <span>Add Product</span>
+          </button>
+          <button 
+            style={{ backgroundColor: "#1D1D1D" }} 
+            className="px-3 py-1.5 rounded text-white text-sm flex items-center transition-all hover:opacity-90"
+          >
+            <span>Manage Products</span>
+          </button>
+        </div>
+        {/* Horizontal line below the buttons */}
+        <div className="border-b border-gray-700 w-full"></div>
+      </div>
+      
       {/* Products content */}
       <div className="grid grid-cols-1 gap-4">
         <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
-          {/* Top header with title and add button */}
+          {/* Top header with title only */}
           <div className="flex justify-between items-center mb-4">
-            <span className="text-white text-lg font-medium">Product List</span>
+            <div className="flex items-center">
+              <span className="text-white text-lg font-medium">Product List</span>
+            </div>
             <button style={{ backgroundColor: "#FFFFFF" }} className="p-2 rounded transition-all">
               <Plus className="w-5 h-5 text-gray-800" />
             </button>

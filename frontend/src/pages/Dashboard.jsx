@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PointStyleChart from '../components/PointStyleChart';
 import PolarAreaChart from '../components/PolarAreaChart'; 
 import MinimalBarChart from '../components/MinimalBarChart';
+import MiniDoughnut from '../components/MiniDoughnutChart';
 import { PhilippinePeso, ShoppingCart, Box, Search, Sun, Moon, LayoutDashboard } from "lucide-react";
 
 const Dashboard = () => {
@@ -111,6 +112,14 @@ const Dashboard = () => {
           <span className="text-gray-300 mb-2 block text-sm font-medium">Customer Growth</span>
           <div className="h-52 w-full">
             <PolarAreaChart />
+          </div>
+        </div>
+
+        {/* Fixed duplicated chart - added a different title */}
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
+          <span className="text-gray-300 mb-2 block text-sm font-medium">Sales Distribution</span>
+          <div className="h-52 w-full">
+            <MiniDoughnut />
           </div>
         </div>
       </div>

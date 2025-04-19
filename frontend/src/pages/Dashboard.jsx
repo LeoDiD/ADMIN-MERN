@@ -3,7 +3,7 @@ import PointStyleChart from '../components/PointStyleChart';
 import PolarAreaChart from '../components/PolarAreaChart'; 
 import MinimalBarChart from '../components/MinimalBarChart';
 import MiniDoughnut from '../components/MiniDoughnutChart';
-import { PhilippinePeso, ShoppingCart, Box, Search, Sun, Moon, LayoutDashboard, Calendar } from "lucide-react";
+import { PhilippinePeso, ShoppingCart, Box, Search, Sun, Moon, LayoutDashboard, Calendar, Star, ThumbsUp, Activity } from "lucide-react";
 
 const Dashboard = () => {
   // Add state for search and dark mode
@@ -97,40 +97,57 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* New Stats Card - Based on provided image */}
-      <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-700 mb-6">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <span className="text-gray-300 text-sm block mb-1">Performance</span>
-            <span className="text-4xl font-bold block">67</span>
-            <div className="flex items-center mt-1">
-              <span className="text-green-400 text-xs mr-1">+2.6%</span>
-              <span className="text-gray-400 text-xs">vs last month</span>
+      {/* Performance Card - Fixed structure */}
+      <div className="bg-[#262626] p-6 rounded-xl shadow border border-gray-700 mb-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          {/* Main Score */}
+          <div>
+            <p className="text-sm text-gray-400 mb-1">Overall Performance</p>
+            <div className="flex items-center gap-3">
+              <span className="text-4xl font-bold text-white">67</span>
+              <div className="flex items-center text-green-400 text-sm">
+                <Activity className="w-4 h-4 mr-1" />
+                +2.6%
+              </div>
             </div>
+            <p className="text-xs text-gray-500 mt-1">Compared to last month</p>
           </div>
 
-          <div className="flex items-center space-x-6">
+          {/* Circle Ratings */}
+          <div className="flex gap-8">
+            {/* Excellent */}
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-blue-600 mb-2 flex items-center justify-center">
-                <span className="text-white text-lg font-medium">86</span>
+              <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center mb-2">
+                <Star className="text-white w-5 h-5" />
               </div>
-              <span className="text-gray-300 text-xs">Excellent</span>
+              <p className="text-white font-medium text-sm">80</p>
+              <p className="text-gray-400 text-xs">Excellent</p>
             </div>
-            
+
+            {/* Good */}
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-purple-600 mb-2 flex items-center justify-center">
-                <span className="text-white text-lg font-medium">52</span>
+              <div className="w-14 h-14 rounded-full bg-purple-600 flex items-center justify-center mb-2">
+                <ThumbsUp className="text-white w-5 h-5" />
               </div>
-              <span className="text-gray-300 text-xs">Good</span>
+              <p className="text-white font-medium text-sm">52</p>
+              <p className="text-gray-400 text-xs">Good</p>
             </div>
-            
+
+            {/* Average */}
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-green-600 mb-2 flex items-center justify-center">
-                <span className="text-white text-lg font-medium">24</span>
+              <div className="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center mb-2">
+                <Activity className="text-white w-5 h-5" />
               </div>
-              <span className="text-gray-300 text-xs">Average</span>
+              <p className="text-white font-medium text-sm">24</p>
+              <p className="text-gray-400 text-xs">Average</p>
             </div>
           </div>
+        </div>
+
+        {/* Extra Info or Callout */}
+        <div className="mt-6 border-t border-gray-700 pt-4 text-sm text-gray-400">
+          <p className="mb-1">🧠 Insight: Excellent ratings are growing, keep it up!</p>
+          <p className="text-xs text-gray-500">Tip: Respond faster to customer feedback to improve "Average" ratings.</p>
         </div>
       </div>
 

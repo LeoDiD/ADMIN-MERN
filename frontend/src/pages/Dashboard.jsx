@@ -97,59 +97,70 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Performance Card - Fixed structure */}
-      <div className="bg-[#262626] p-6 rounded-xl shadow border border-gray-700 mb-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          {/* Main Score */}
-          <div>
-            <p className="text-sm text-gray-400 mb-1">Overall Performance</p>
-            <div className="flex items-center gap-3">
-              <span className="text-4xl font-bold text-white">67</span>
-              <div className="flex items-center text-green-400 text-sm">
-                <Activity className="w-4 h-4 mr-1" />
-                +2.6%
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-1">Compared to last month</p>
-          </div>
-
-          {/* Circle Ratings */}
-          <div className="flex gap-8">
-            {/* Excellent */}
-            <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center mb-2">
-                <Star className="text-white w-5 h-5" />
-              </div>
-              <p className="text-white font-medium text-sm">80</p>
-              <p className="text-gray-400 text-xs">Excellent</p>
-            </div>
-
-            {/* Good */}
-            <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-purple-600 flex items-center justify-center mb-2">
-                <ThumbsUp className="text-white w-5 h-5" />
-              </div>
-              <p className="text-white font-medium text-sm">52</p>
-              <p className="text-gray-400 text-xs">Good</p>
-            </div>
-
-            {/* Average */}
-            <div className="flex flex-col items-center">
-              <div className="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center mb-2">
-                <Activity className="text-white w-5 h-5" />
-              </div>
-              <p className="text-white font-medium text-sm">24</p>
-              <p className="text-gray-400 text-xs">Average</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Extra Info or Callout */}
-        <div className="mt-6 border-t border-gray-700 pt-4 text-sm text-gray-400">
-          <p className="mb-1">🧠 Insight: Excellent ratings are growing, keep it up!</p>
-          <p className="text-xs text-gray-500">Tip: Respond faster to customer feedback to improve "Average" ratings.</p>
+      {/* Performance Card - Enhanced with Progress and Life */}
+<div className="bg-[#262626] p-6 rounded-xl shadow border border-gray-700 mb-6">
+  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    
+    {/* Main Score */}
+    <div>
+      <p className="text-sm text-gray-400 mb-1">Overall Performance</p>
+      <div className="flex items-center gap-3">
+        <span className="text-4xl font-bold text-white">67</span>
+        <div className="flex items-center text-green-400 text-sm">
+          <Activity className="w-4 h-4 mr-1" />
+          +2.6%
         </div>
       </div>
+      <p className="text-xs text-gray-500 mt-1">Compared to last month</p>
+    </div>
+
+    {/* Center Progress Bar */}
+    <div className="flex flex-col justify-center items-center md:w-1/3 w-full">
+      <p className="text-sm text-gray-300 mb-2">Progress to Goal</p>
+      <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
+        <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 w-[67%] rounded-full" />
+      </div>
+      <p className="text-xs text-gray-500 mt-1">67% of target reached</p>
+    </div>
+
+    {/* Circle Ratings */}
+    <div className="flex gap-8">
+      {/* Excellent */}
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center mb-2">
+          <Star className="text-white w-5 h-5" />
+        </div>
+        <p className="text-white font-medium text-sm">80</p>
+        <p className="text-gray-400 text-xs">Excellent</p>
+      </div>
+
+      {/* Good */}
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-full bg-purple-600 flex items-center justify-center mb-2">
+          <ThumbsUp className="text-white w-5 h-5" />
+        </div>
+        <p className="text-white font-medium text-sm">52</p>
+        <p className="text-gray-400 text-xs">Good</p>
+      </div>
+
+      {/* Average */}
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center mb-2">
+          <Activity className="text-white w-5 h-5" />
+        </div>
+        <p className="text-white font-medium text-sm">24</p>
+        <p className="text-gray-400 text-xs">Average</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Insight Section */}
+  <div className="mt-6 border-t border-gray-700 pt-4 text-sm text-gray-400">
+    <p className="mb-1">✨ Insight: More customers are leaving great feedback this month!</p>
+    <p className="text-xs text-gray-500">🔍 Tip: Focus on turning "Good" into "Excellent" with faster service.</p>
+  </div>
+</div>
+
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

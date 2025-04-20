@@ -1,5 +1,5 @@
 import React from 'react';
-import { PackageOpen, ShoppingBag,} from 'lucide-react';
+import { PackageOpen, ShoppingBag, Ellipsis} from 'lucide-react';
 import meat from '../assets/meat.png';
 
 const Orders = () => {
@@ -28,31 +28,35 @@ const Orders = () => {
           {/* Delivery items */}
           <div className="space-y-4">
             {/* Delivery Item 1 */}
-            <div className="bg-opacity-50 rounded-lg p-4 border border-dashed border-gray-500">
-              <div className="flex items-start gap-4">
-                {/* Larger image */}
-                <img src={meat} alt="Product" className="w-20 h-20 rounded-md object-cover"/>
-                
-                {/* Middle content - product details and delivery info */}
-                <div className="flex-1">
-                  <span className="text-white font-medium block mb-2">Meat Liempo Cut | Fresh Product</span>
-                  <div className="text-sm text-gray-400">
-                    <p>Delivery to: John Smith</p>
-                    <p className="text-xs text-gray-500 mt-2">Est. Delivery: Apr 22</p>
-                  </div>
-                </div>
-                
-                {/* Right content - status badge */}
-                <div className="flex flex-col items-end">
-                  <span className="bg-yellow-500 bg-opacity-20 py-1 px-3 rounded-full text-yellow-400 text-xs font-medium whitespace-nowrap">
-                    In Transit
-                  </span>
-                  <span className="text-blue-400 text-xs mt-auto cursor-pointer hover:underline">
-                    Track Package
-                  </span>
-                </div>
-              </div>
-            </div>
+<div className="bg-opacity-50 rounded-lg p-4 border border-dashed border-gray-500">
+  <div className="flex items-center gap-4">
+    {/* Adjusted image size */}
+    <img
+      src={meat}
+      alt="Product"
+      className="w-14 h-14 rounded-md object-cover"
+    />
+
+    {/* Product details */}
+    <div className="flex-1">
+      <p className="text-white font-medium text-sm leading-snug">
+        Meat Liempo Cut | Fresh Product
+      </p>
+      <p className="text-xs text-gray-400 mt-1">Delivery to: John Smith</p>
+    </div>
+
+    {/* Status & ellipsis in one row */}
+    <div className="flex items-center gap-2">
+      <span className="bg-yellow-500 bg-opacity-20 py-1 px-3 rounded-full text-white text-xs font-medium whitespace-nowrap">
+        In Transit
+      </span>
+      <span className="text-xs cursor-pointer hover:underline">
+        <Ellipsis />
+      </span>
+    </div>
+  </div>
+</div>
+
             
             {/* Delivery Item 2 */}
             <div className="bg-gray-800 bg-opacity-40 rounded-lg p-4">
@@ -67,7 +71,6 @@ const Orders = () => {
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-gray-500">Est. Delivery: Today</span>
-                <span className="text-blue-400">Track Package</span>
               </div>
             </div>
 

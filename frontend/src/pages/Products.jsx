@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Search, Sun, Moon, Package, Plus, EllipsisVertical } from 'lucide-react';
+import AddProduct from './AddProduct';  // Adjust path if needed
+import ManageProduct from './ManageProduct';  // Adjust path if needed
 
 const Products = () => {
   // Add state for search and dark mode
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [view, setView] = useState('add'); // 'add' or 'manage'
   
   // Add toggle functions
   const toggleSearchInput = () => setShowSearchInput(!showSearchInput);
@@ -50,27 +53,43 @@ const Products = () => {
         </div>
       </div>
       
-      {/* Action buttons outside of product list container */}
+      {/* Product Section with Toggle Buttons */}
       <div className="flex flex-col mb-4">
-        <div className="flex items-center space-x-2 mb-2">
-          <button 
-            style={{ backgroundColor: "#1D1D1D" }} 
-            className="px-3 py-1.5 rounded text-white text-sm flex items-center transition-all hover:opacity-90"
+        {/* Toggle Buttons */}
+        <div className="flex mb-4">
+          <button
+            onClick={() => setView('add')}
+            className={`px-4 py-2 text-sm font-medium rounded-l ${
+              view === 'add' 
+                ? 'bg-gray-700 text-white border-b-2 border-blue-500' 
+                : 'bg-gray-800 text-gray-400'
+            }`}
           >
-            <span>Add Product</span>
+            Add Product
           </button>
-          <button 
-            style={{ backgroundColor: "#1D1D1D" }} 
-            className="px-3 py-1.5 rounded text-white text-sm flex items-center transition-all hover:opacity-90"
+          <button
+            onClick={() => setView('manage')}
+            className={`px-4 py-2 text-sm font-medium rounded-r ${
+              view === 'manage' 
+                ? 'bg-gray-700 text-white border-b-2 border-blue-500' 
+                : 'bg-gray-800 text-gray-400'
+            }`}
           >
-            <span>Manage Products</span>
+            Manage Products
           </button>
         </div>
-        {/* Horizontal line below the buttons */}
-        <div className="border-b border-gray-700 w-full"></div>
+
+        {/* Horizontal line */}
+        <div className="border-b border-gray-700 w-full mb-4"></div>
+
+        {/* Product Content Based on View */}
+        <div className="mt-2 bg-[#262626] p-4 rounded-lg shadow border border-gray-700">
+          {view === 'add' && <AddProduct />}
+          {view === 'manage' && <ManageProduct />}
+        </div>
       </div>
       
-      {/* Products content */}
+      {/* Products list - You can keep this or remove based on your needs */}
       <div className="grid grid-cols-1 gap-4">
         <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
           {/* Top header with title only */}

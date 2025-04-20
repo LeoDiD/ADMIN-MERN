@@ -55,7 +55,7 @@ const ManageProduct = () => {
       </div>
       
       {/* Best Selling Products */}
-      <div className="bg-gray-800 p-4 rounded-lg shadow mb-6 border border-gray-600">   
+      <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow mb-6 border border-gray-600">   
         <div className="flex items-center mb-3">
           <Star className="text-yellow-400 w-5 h-5 mr-2" />
           <h4 className="text-md font-medium">Best Selling Products</h4>

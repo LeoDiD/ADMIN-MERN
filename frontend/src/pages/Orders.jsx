@@ -1,5 +1,5 @@
 import React from 'react';
-import { PackageOpen, ShoppingBag, Ellipsis} from 'lucide-react';
+import { PackageOpen, Ellipsis} from 'lucide-react';
 import meat from '../assets/meat.png';
 
 const Orders = () => {
@@ -28,36 +28,34 @@ const Orders = () => {
           {/* Delivery items */}
           <div className="space-y-4">
             {/* Delivery Item 1 */}
-<div className="bg-opacity-50 rounded-lg p-4 border border-dashed border-gray-500">
-  <div className="flex items-center gap-4">
-    {/* Adjusted image size */}
-    <img
-      src={meat}
-      alt="Product"
-      className="w-14 h-14 rounded-md object-cover"
-    />
+            <div className="bg-opacity-50 rounded-lg p-4 border border-dashed border-gray-500">
+              <div className="flex items-center gap-4">
+                {/* Adjusted image size */}
+                <img
+                  src={meat}
+                  alt="Product"
+                  className="w-14 h-14 rounded-md object-cover"
+                />
 
-    {/* Product details */}
-    <div className="flex-1">
-      <p className="text-white font-medium text-sm leading-snug">
-        Meat Liempo Cut | Fresh Product
-      </p>
-      <p className="text-xs text-gray-400 mt-1">Delivery to: John Smith</p>
-    </div>
+                {/* Product details */}
+                <div className="flex-1">
+                  <p className="text-white font-medium text-sm leading-snug">
+                    Meat Liempo Cut | Fresh Product
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">Delivery to: John Smith</p>
+                </div>
 
-    {/* Status & ellipsis in one row */}
-    <div className="flex items-center gap-2">
-      <span className="bg-yellow-500 bg-opacity-20 py-1 px-3 rounded-full text-white text-xs font-medium whitespace-nowrap">
-        In Transit
-      </span>
-      <span className="text-xs cursor-pointer hover:underline">
-        <Ellipsis />
-      </span>
-    </div>
-  </div>
-</div>
-
-            
+                {/* Status & ellipsis in one row */}
+                <div className="flex items-center gap-2">
+                  <span className="bg-yellow-500 bg-opacity-20 py-1 px-3 rounded-full text-white text-xs font-medium whitespace-nowrap">
+                    In Transit
+                  </span>
+                  <span className="text-xs cursor-pointer hover:underline">
+                    <Ellipsis />
+                  </span>
+                </div>
+              </div>
+            </div>
             {/* Delivery Item 2 */}
             <div className="bg-gray-800 bg-opacity-40 rounded-lg p-4">
               <div className="flex justify-between items-center mb-2">
@@ -97,11 +95,25 @@ const Orders = () => {
         <div style={{ backgroundColor: "#262626" }} className="rounded-lg p-6 shadow border border-gray-700">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center">
-              <ShoppingBag className="w-5 h-5 mr-2 text-purple-400"/>
               <h3 className="text-lg font-medium text-white">Recent Orders</h3>
             </div>
-            <div className="bg-purple-500 bg-opacity-20 py-1 px-3 rounded-full text-purple-400 text-xs font-medium">
-              12 New
+          </div>
+
+          <div className="flex justify-between items-center mb-4 text-sm">
+            <div className="flex items-center">
+              <span className="text-white mr-2">Entries per page:</span>
+              <select style={{ backgroundColor: "#1D1D1D" }} className="text-white px-2 py-1 rounded focus:outline-none focus:ring-2 focus:bg-neutral-900 transition-all duration-300">
+                <option value="5">5</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            
+            <div className="flex items-center">
+              <span className="text-white mr-2">Search:</span>
+              <input
+                type="text"
+                className="bg-gray-700 rounded-lg px-3 py-1 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-white text-sm"
+              />
             </div>
           </div>
 
@@ -109,11 +121,11 @@ const Orders = () => {
           <div className="overflow-x-auto">
             <table className="min-w-full bg-transparent">
               <thead>
-                <tr className="border-b border-gray-700">
-                  <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Order ID</th>
-                  <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Customer</th>
-                  <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-                  <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Total</th>
+                <tr className="border-1 border-gray-700">
+                  <th style={{ backgroundColor: "#1D1D1D" }} className="px-4 py-0.5 text-sm font-medium border-1 w-14">Products</th>
+                  <th style={{ backgroundColor: "#1D1D1D" }} className="px-4 py-3 text-sm font-medium border-1">Customer</th>
+                  <th style={{ backgroundColor: "#1D1D1D" }} className="px-4 py-3 text-sm font-medium border-1">Status</th>
+                  <th style={{ backgroundColor: "#1D1D1D" }} className="px-4 py-3 text-sm font-medium border-1">Total</th>
                 </tr>
               </thead>
               <tbody>

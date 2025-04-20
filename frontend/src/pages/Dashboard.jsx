@@ -103,7 +103,7 @@ const Dashboard = () => {
     
     {/* Main Score */}
     <div>
-      <p className="text-sm text-gray-400 mb-1">Overall Performance</p>
+      <p className="text-sm text-white mb-1">Overall Performance</p>
       <div className="flex items-center gap-3">
         <span className="text-4xl font-bold text-white">67</span>
         <div className="flex items-center text-green-400 text-sm">
@@ -111,7 +111,7 @@ const Dashboard = () => {
           +2.6%
         </div>
       </div>
-      <p className="text-xs text-gray-500 mt-1">Compared to last month</p>
+      <p className="text-xs text-white mt-1">Compared to last month</p>
     </div>
 
     {/* Center Progress Bar */}
@@ -120,7 +120,7 @@ const Dashboard = () => {
       <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
         <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 w-[67%] rounded-full" />
       </div>
-      <p className="text-xs text-gray-500 mt-1">67% of target reached</p>
+      <p className="text-xs text-white   mt-1">67% of target reached</p>
     </div>
 
     {/* Circle Ratings */}
@@ -184,10 +184,10 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Upcoming Events */}
           <div className="bg-[#1F1F1F] rounded-xl p-4 shadow border border-gray-700">
-            <h3 className="text-sm font-semibold text-gray-400 mb-4">Upcoming Events</h3>
-            <div className="flex items-start gap-3 mb-3">
+            <h3 className="text-sm font-semibold text-white mb-4">Upcoming Events</h3>
+            <div className="bg-blue-600 flex items-start gap-3 mb-3">
               <Calendar className="text-blue-400 w-5 h-5 mt-1" />
-              <div>
+              <div className="flex flex-col">
                 <p className="text-blue-400 text-sm font-medium">Jan 5, 2025</p>
                 <p className="text-gray-300 text-sm">Anime Expo Meetup</p>
               </div>

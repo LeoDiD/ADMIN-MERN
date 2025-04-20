@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit, Trash2 } from 'lucide-react';
+import { Edit, Trash2, ShoppingBag, Package, AlertTriangle, Star } from 'lucide-react';
 
 const ManageProduct = () => {
   const products = [
@@ -10,6 +10,72 @@ const ManageProduct = () => {
 
   return (
     <div>
+      <h3 className="text-lg font-medium mb-4">Inventory Statistics</h3>
+      
+      {/* Stat Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        {/* Total Products */}
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Total Products</p>
+              <p className="text-2xl font-bold mt-1">124</p>
+            </div>
+            <div className="bg-blue-500 bg-opacity-20 p-3 rounded-full">
+              <ShoppingBag className="text-white w-6 h-6" />
+            </div>
+          </div>
+        </div>
+        
+        {/* In Stock */}
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">In Stock</p>
+              <p className="text-2xl font-bold mt-1">98</p>
+            </div>
+            <div className="bg-green-500 bg-opacity-20 p-3 rounded-full">
+              <Package className="text-white 0 w-6 h-6" />
+            </div>
+          </div>
+        </div>
+        
+        {/* Out of Stock */}
+        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Out of Stock</p>
+              <p className="text-2xl font-bold mt-1">26</p>
+            </div>
+            <div className="bg-red-500 bg-opacity-20 p-3 rounded-full">
+              <AlertTriangle className="text-white w-6 h-6" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Best Selling Products */}
+      <div className="bg-gray-800 p-4 rounded-lg shadow mb-6 border border-gray-600">   
+        <div className="flex items-center mb-3">
+          <Star className="text-yellow-400 w-5 h-5 mr-2" />
+          <h4 className="text-md font-medium">Best Selling Products</h4>
+        </div>
+        <ul className="divide-y divide-gray-700">
+          <li className="py-2 flex justify-between">
+            <span>Anime Action Figure</span>
+            <span className="text-green-400">₱45,000</span>
+          </li>
+          <li className="py-2 flex justify-between">
+            <span>Cosplay T-Shirt</span>
+            <span className="text-green-400">₱32,500</span>
+          </li>
+          <li className="py-2 flex justify-between">
+            <span>Collectible Keychain</span>
+            <span className="text-green-400">₱18,750</span>
+          </li>
+        </ul>
+      </div>
+
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-medium">Manage Products</h3>
         <div className="relative">

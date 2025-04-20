@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Search, Sun, Moon, Package, Plus, EllipsisVertical } from 'lucide-react';
-import AddProduct from './AddProduct';  // Adjust path if needed
 import ManageProduct from './ManageProduct';  // Adjust path if needed
 
 const Products = () => {
@@ -83,76 +82,73 @@ const Products = () => {
         <div className="border-b border-gray-700 w-full mb-4"></div>
 
         {/* Product Content Based on View */}
-        <div className="mt-2 bg-[#262626] p-4 rounded-lg shadow border border-gray-700">
-          {view === 'add' && <AddProduct />}
+        <div className="flex flex-col space-y-4">         
           {view === 'manage' && <ManageProduct />}
         </div>
       </div>
       
-      {/* Products list - You can keep this or remove based on your needs */}
-      <div className="grid grid-cols-1 gap-4">
-        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
-          {/* Top header with title only */}
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center">
-              <span className="text-white text-lg font-medium">Product List</span>
-            </div>
-            <button style={{ backgroundColor: "#FFFFFF" }} className="p-2 rounded transition-all">
-              <Plus className="w-5 h-5 text-gray-800" />
-            </button>
-          </div>
-          
-          {/* Sort options with search input beside it */}
-          <div className="flex justify-between items-center mb-4 text-sm">
-            <div className="flex items-center">
-              <span className="text-white mr-2">Entries per page:</span>
-              <select style={{ backgroundColor: "#1D1D1D" }} className="text-white px-2 py-1 rounded focus:outline-none focus:ring-2 focus:bg-neutral-900 transition-all duration-300">
-                <option value="5">5</option>
-                <option value="10">10</option>
-              </select>
+      {/* Product List Section - Only show when "Add Product" is active */}
+      {view === 'add' && (
+        <div className="grid grid-cols-1 gap-4">
+          <div style={{ backgroundColor: "#262626" }} className="p-4 rounded shadow border border-gray-800">
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center">
+                <span className="text-white text-lg font-medium">Product List</span>
+              </div>
+              <button style={{ backgroundColor: "#FFFFFF" }} className="p-2 rounded transition-all">
+                <Plus className="w-5 h-5 text-gray-800" />
+              </button>
             </div>
             
-            <div className="flex items-center">
-              <span className="text-white mr-2">Search:</span>
-              <input
-                type="text"
-                className="bg-gray-700 rounded-lg px-3 py-1 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-white text-sm"
-              />
+            <div className="flex justify-between items-center mb-4 text-sm">
+              <div className="flex items-center">
+                <span className="text-white mr-2">Entries per page:</span>
+                <select style={{ backgroundColor: "#1D1D1D" }} className="text-white px-2 py-1 rounded focus:outline-none focus:ring-2 focus:bg-neutral-900 transition-all duration-300">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="text-white mr-2">Search:</span>
+                <input
+                  type="text"
+                  className="bg-gray-700 rounded-lg px-3 py-1 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-white text-sm"
+                />
+              </div>
+            </div>
+            
+            <div style={{ backgroundColor: "#1D1D1D" }} className="rounded-md overflow-hidden">
+              <table className="w-full text-left border-1 border-collapse">
+                <thead>
+                  <tr>
+                    <th className="px-3 py-2 text-sm font-medium border-1 w-16">Image</th>
+                    <th className="px-4 py-3 text-sm font-medium border-1">Name</th>
+                    <th className="px-4 py-3 text-sm font-medium border-1">Description</th>
+                    <th className="px-3 py-2 text-sm font-medium border-1 w-20">Price</th>
+                    <th className="px-3 py-2 text-sm font-medium border-1 w-24">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ backgroundColor: "#262626" }} className="border-t">
+                    <td className="px-4 py-3">
+                      <div className="w-10 h-10 bg-gray-600 rounded"></div>
+                    </td>
+                    <td className="px-4 py-3">Product Name</td>
+                    <td className="px-4 py-3 text-gray-300">Short description here...</td>
+                    <td className="px-4 py-3">₱199.99</td>
+                    <td className="px-4 py-3">
+                      <EllipsisVertical className="w-6 h-6" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          
-          {/* Product table/list area */}
-          <div style={{ backgroundColor: "#1D1D1D" }} className="rounded-md overflow-hidden">
-            <table className="w-full text-left border-1  border-collapse">
-              <thead>
-                <tr>
-                  <th className="px-3 py-2 text-sm font-medium border-1 w-16">Image</th>
-                  <th className="px-4 py-3 text-sm font-medium border-1">Name</th>
-                  <th className="px-4 py-3 text-sm font-medium border-1">Description</th>
-                  <th className="px-3 py-2 text-sm font-medium border-1 w-20">Price</th>
-                  <th className="px-3 py-2 text-sm font-medium border-1 w-24">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* Example row - you can replace this with your actual data mapping */}
-                <tr style={{ backgroundColor: "#262626" }} className="border-t">
-                  <td className="px-4 py-3">
-                    <div className="w-10 h-10 bg-gray-600 rounded"></div>
-                  </td>
-                  <td className="px-4 py-3">Product Name</td>
-                  <td className="px-4 py-3 text-gray-300">Short description here...</td>
-                  <td className="px-4 py-3">₱199.99</td>
-                  <td className="px-4 py=3">
-                      <EllipsisVertical className="w-8 h-8" />
-                  </td>
-                </tr>
-             </tbody>
-            </table>
-          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
-export default Products;
+export default Products;``

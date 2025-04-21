@@ -191,9 +191,9 @@ const Orders = () => {
                 <button className="p-0.5 text-gray-400 hover:text-white rounded" title="Previous">
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <button className="w-5 h-5 rounded text-xs bg-blue-600 text-white">1</button>
-                <button className="w-5 h-5 rounded text-xs text-gray-400 hover:bg-gray-700">2</button>
-                <button className="w-5 h-5 rounded text-xs text-gray-400 hover:bg-gray-700">3</button>
+                <button className="w-1 h-1 rounded text-xs bg-blue-600 text-white">1</button>
+                <button className="w-1 h-1 rounded text-xs text-gray-400 hover:bg-gray-700">2</button>
+                <button className="w-1 h-1 rounded text-xs text-gray-400 hover:bg-gray-700">3</button>
                 <button className="p-0.5 text-gray-400 hover:text-white rounded" title="Next">
                   <ChevronRight className="w-4 h-4" />
                 </button>

@@ -263,40 +263,50 @@ const Dashboard = () => {
         </div>
 
         {/* Upcoming Events and New Customers Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Upcoming Events */}
-          <div style={{ backgroundColor: bgSecondary }} className={`rounded-xl p-4 shadow border ${borderColor}`}>
-            <h3 className={`text-sm font-semibold ${textPrimary} mb-4`}>Upcoming Events</h3>
-            <div className="bg-blue-600 flex items-start gap-3 mb-3">
-              <Calendar className="text-blue-400 w-5 h-5 mt-1" />
-              <div className="flex flex-col">
-                <p className="text-blue-400 text-sm font-medium">Jan 5, 2025</p>
-                <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>Anime Expo Meetup</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Calendar className="text-purple-400 w-5 h-5 mt-1" />
-              <div>
-                <p className="text-purple-400 text-sm font-medium">Feb 5, 2025</p>
-                <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>Product Discount Day</p>
-              </div>
-            </div>
-          </div>
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  {/* Upcoming Events */}
+  <div style={{ backgroundColor: bgSecondary }} className={`rounded-xl p-6 shadow-lg border ${borderColor}`}>
+    <h3 className={`text-base font-semibold ${textPrimary} mb-4`}>📅 Upcoming Events</h3>
 
-          {/* New Customers */}
-          <div style={{ backgroundColor: bgSecondary }} className={`rounded-xl p-4 shadow border ${borderColor} flex flex-col justify-between`}>
-            <div className={`${textSecondary} text-sm font-semibold mb-4`}>New Customers</div>
-            <div className="flex justify-between items-center">
-              <div className="flex -space-x-3">
-                <img src="/avatars/avatar1.png" className={`w-8 h-8 rounded-full border-2 ${darkMode ? "border-[#1F1F1F]" : "border-gray-100"}`} />
-                <img src="/avatars/avatar2.png" className={`w-8 h-8 rounded-full border-2 ${darkMode ? "border-[#1F1F1F]" : "border-gray-100"}`} />
-                <img src="/avatars/avatar3.png" className={`w-8 h-8 rounded-full border-2 ${darkMode ? "border-[#1F1F1F]" : "border-gray-100"}`} />
-                <img src="/avatars/avatar4.png" className={`w-8 h-8 rounded-full border-2 ${darkMode ? "border-[#1F1F1F]" : "border-gray-100"}`} />
-              </div>
-              <div className={`${textPrimary} text-2xl font-bold`}>69</div>
-            </div>
-          </div>
-        </div>
+    {/* Event Item */}
+    <div className="flex items-start gap-4 mb-4 hover:bg-blue-950/10 p-2 rounded-lg transition-all duration-300">
+      <Calendar className="text-blue-400 w-5 h-5 mt-1" />
+      <div>
+        <p className="text-blue-400 text-sm font-medium">Jan 5, 2025</p>
+        <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>Anime Expo Meetup</p>
+      </div>
+    </div>
+
+    {/* Event Item */}
+    <div className="flex items-start gap-4 hover:bg-purple-950/10 p-2 rounded-lg transition-all duration-300">
+      <Calendar className="text-purple-400 w-5 h-5 mt-1" />
+      <div>
+        <p className="text-purple-400 text-sm font-medium">Feb 5, 2025</p>
+        <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>Product Discount Day</p>
+      </div>
+    </div>
+  </div>
+
+  {/* New Customers */}
+  <div style={{ backgroundColor: bgSecondary }} className={`rounded-xl p-6 shadow-lg border ${borderColor}`}>
+    <div className="flex justify-between items-center mb-4">
+      <h3 className={`${textSecondary} text-base font-semibold`}>👥 New Customers</h3>
+      <span className={`${textPrimary} text-2xl font-bold`}>69</span>
+    </div>
+
+    <div className="flex items-center -space-x-3">
+      {["avatar1", "avatar2", "avatar3", "avatar4"].map((name, idx) => (
+        <img
+          key={idx}
+          src={`/avatars/${name}.png`}
+          alt={`Customer ${idx + 1}`}
+          className={`w-10 h-10 rounded-full border-2 ${darkMode ? "border-[#1F1F1F]" : "border-white"} transition-transform hover:scale-105`}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
 
         {/* Sales Distribution Chart */}
         <div style={{ backgroundColor: darkMode ? "#1e1e1e" : "#f9f9f9" }} className={`p-6 rounded-xl border ${borderColor} shadow-md w-full max-w-2xl`}>

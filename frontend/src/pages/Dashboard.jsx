@@ -296,7 +296,7 @@ const Dashboard = () => {
 
     <div className="flex items-center -space-x-3">
       {["avatar1", "avatar2", "avatar3", "avatar4"].map((name, idx) => (
-        <img
+        <img 
           key={idx}
           src={`/avatars/${name}.png`}
           alt={`Customer ${idx + 1}`}

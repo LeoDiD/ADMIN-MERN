@@ -1,16 +1,86 @@
-import React, { useState } from 'react';
-import { Search, Sun, Moon, Package, Plus, EllipsisVertical } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { X, Upload, ChevronLeft, ChevronRight, Search, Sun, Moon, Package, Plus, EllipsisVertical } from 'lucide-react';
 import ManageProduct from './ManageProduct';  // Adjust path if needed
 
 const Products = () => {
-  // Add state for search and dark mode
+  // Add state variables
+  const [showModal, setShowModal] = useState(false);
+  const [wizardStep, setWizardStep] = useState(1);
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [view, setView] = useState('add'); // 'add' or 'manage'
+  const [productData, setProductData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    image: null
+  });
+  const fileInputRef = useRef(null);
   
-  // Add toggle functions
+  // Toggle functions
   const toggleSearchInput = () => setShowSearchInput(!showSearchInput);
   const toggleDarkMode = () => setDarkMode(!darkMode);
+  
+  // Modal functions
+  const openModal = () => {
+    setShowModal(true);
+    setWizardStep(1);
+    setProductData({
+      name: '',
+      description: '',
+      price: '',
+      image: null
+    });
+  };
+  
+  const closeModal = () => {
+    setShowModal(false);
+  };
+  
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProductData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  // Handle file upload
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setProductData(prev => ({
+        ...prev,
+        image: e.target.files[0]
+      }));
+    }
+  };
+  
+  // Form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Product data submitted:', productData);
+    // Add API call here to save product data
+    closeModal();
+  };
+  
+  // Navigation functions with event propagation fixes
+  const nextStep = (e) => {
+    e.preventDefault();  // Prevent form submission
+    e.stopPropagation(); // Prevent event bubbling
+    setWizardStep(2);
+  };
+
+  const prevStep = (e) => {
+    e.preventDefault();  // Prevent form submission
+    e.stopPropagation(); // Prevent event bubbling
+    setWizardStep(1);
+  };
+
+  // Add this to prevent background clicks from closing the modal
+  const handleModalClick = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <div style={{ backgroundColor: "#1D1D1D" }} className="p-6 h-full w-full overflow-y-auto text-white">
@@ -95,7 +165,11 @@ const Products = () => {
               <div className="flex items-center">
                 <span className="text-white text-lg font-medium">Product List</span>
               </div>
-              <button style={{ backgroundColor: "#FFFFFF" }} className="p-2 rounded transition-all">
+              <button 
+                onClick={openModal}
+                style={{ backgroundColor: "#FFFFFF" }} 
+                className="p-2 rounded transition-all hover:bg-gray-200"
+              >
                 <Plus className="w-5 h-5 text-gray-800" />
               </button>
             </div>
@@ -147,8 +221,148 @@ const Products = () => {
           </div>
         </div>
       )}
+      
+      {/* Modal for Adding Product - Wizard Style */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={closeModal} // Close when clicking background
+        >
+          <div 
+            className="relative w-full max-w-lg bg-[#262626] text-white rounded-xl shadow-lg p-6"
+            onClick={handleModalClick} // Prevent propagation to background
+          >
+            
+            {/* Modal Header */}
+            <div className="flex justify-between items-center border-b border-gray-600 pb-3 mb-4">
+              <h2 className="text-lg font-semibold">
+                {wizardStep === 1 ? "Step 1: Product Details" : "Step 2: Upload Image"}
+              </h2>
+              <button onClick={closeModal} className="hover:text-red-500">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Progress Steps */}
+            <div className="flex items-center justify-center space-x-2 mb-6">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                wizardStep >= 1 ? 'bg-blue-500' : 'bg-gray-500'
+              }`}>1</div>
+              <div className={`h-1 w-12 ${wizardStep > 1 ? 'bg-blue-500' : 'bg-gray-600'}`}></div>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                wizardStep === 2 ? 'bg-blue-500' : 'bg-gray-500'
+              }`}>2</div>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              {wizardStep === 1 && (
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="text-sm block mb-1">Product Name</label>
+                    <input
+                      id="name"
+                      name="name"
+                      value={productData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="description" className="text-sm block mb-1">Description</label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      rows={3}
+                      value={productData.description}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="price" className="text-sm block mb-1">Price (₱)</label>
+                    <input
+                      id="price"
+                      name="price"
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={productData.price}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                </div>
+              )}
+
+              {wizardStep === 2 && (
+                <div className="space-y-4">
+                  <label className="block text-sm mb-2">Upload Image</label>
+                  <div
+                    onClick={() => fileInputRef.current.click()}
+                    className="w-full h-48 border-2 border-dashed border-gray-500 flex items-center justify-center cursor-pointer rounded hover:border-blue-400"
+                  >
+                    {productData.image ? (
+                      <img
+                        src={URL.createObjectURL(productData.image)}
+                        alt="Preview"
+                        className="max-h-full object-contain"
+                      />
+                    ) : (
+                      <div className="text-gray-400 flex flex-col items-center">
+                        <Upload className="w-10 h-10 mb-2" />
+                        <p>Click to upload image</p>
+                      </div>
+                    )}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      ref={fileInputRef}
+                      className="hidden"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Footer buttons */}
+              <div className="flex justify-between items-center mt-6">
+                {wizardStep > 1 && (
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="text-sm text-gray-300 hover:underline flex items-center"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-1" /> Back
+                  </button>
+                )}
+                {wizardStep === 1 ? (
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="ml-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                  >
+                    Next <ChevronRight className="w-4 h-4 inline ml-1" />
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="ml-auto bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                  >
+                    Submit
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default Products;``
+export default Products;

@@ -244,7 +244,7 @@ const Dashboard = () => {
         </div>
       </motion.div>
 
-      {/* Charts Grid */}
+      {/* Charts Grid with Balanced Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Monthly Sales Chart */}
         <div style={{ backgroundColor: bgCard }} className={`p-4 rounded shadow border ${borderColor}`}>
@@ -262,87 +262,265 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Upcoming Events and New Customers Cards */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-  {/* Upcoming Events */}
-  <div style={{ backgroundColor: bgSecondary }} className={`rounded-xl p-6 shadow-lg border ${borderColor}`}>
-    <h3 className={`text-base font-semibold ${textPrimary} mb-4`}>📅 Upcoming Events</h3>
-
-    {/* Event Item */}
-    <div className="flex items-start gap-4 mb-4 hover:bg-blue-950/10 p-2 rounded-lg transition-all duration-300">
-      <Calendar className="text-blue-400 w-5 h-5 mt-1" />
-      <div>
-        <p className="text-blue-400 text-sm font-medium">Jan 5, 2025</p>
-        <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>Anime Expo Meetup</p>
-      </div>
-    </div>
-
-    {/* Event Item */}
-    <div className="flex items-start gap-4 hover:bg-purple-950/10 p-2 rounded-lg transition-all duration-300">
-      <Calendar className="text-purple-400 w-5 h-5 mt-1" />
-      <div>
-        <p className="text-purple-400 text-sm font-medium">Feb 5, 2025</p>
-        <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>Product Discount Day</p>
-      </div>
-    </div>
-  </div>
-
-  {/* New Customers */}
-  <div style={{ backgroundColor: bgSecondary }} className={`rounded-xl p-6 shadow-lg border ${borderColor}`}>
-    <div className="flex justify-between items-center mb-4">
-      <h3 className={`${textSecondary} text-base font-semibold`}>👥 New Customers</h3>
-      <span className={`${textPrimary} text-2xl font-bold`}>69</span>
-    </div>
-
-    <div className="flex items-center -space-x-3">
-      {["avatar1", "avatar2", "avatar3", "avatar4"].map((name, idx) => (
-        <img 
-          key={idx}
-          src={`/avatars/${name}.png`}
-          alt={`Customer ${idx + 1}`}
-          className={`w-10 h-10 rounded-full border-2 ${darkMode ? "border-[#1F1F1F]" : "border-white"} transition-transform hover:scale-105`}
-        />
-      ))}
-    </div>
-  </div>
-</div>
-
-
-        {/* Sales Distribution Chart */}
-        <div style={{ backgroundColor: darkMode ? "#1e1e1e" : "#f9f9f9" }} className={`p-6 rounded-xl border ${borderColor} shadow-md w-full max-w-2xl`}>
-          {/* Header */}
-          <div className="mb-6">
-            <p className={`text-sm ${textSecondary}`}>Expected Earning</p>
-            <div className="flex items-center justify-between">
-              <h2 className={`text-3xl font-bold ${textPrimary}`}>₱280,000</h2>
-              <span className="text-green-400 text-sm font-medium">+2%</span>
+        {/* Lower Section - Three Cards Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 col-span-1 lg:col-span-2">
+          {/* Activity Timeline Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            style={{ backgroundColor: bgSecondary }} 
+            className={`rounded-xl p-4 shadow-lg border ${borderColor}`}
+          >
+            <div className="flex justify-between items-center mb-3">
+              <h3 className={`text-sm font-semibold ${textPrimary}`}>📊 Activity Timeline</h3>
+              <select 
+                className={`text-xs rounded px-2 py-1 ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border ${textPrimary} focus:outline-none focus:ring-1 focus:ring-blue-500`}
+              >
+                <option>Today</option>
+                <option>This Week</option>
+              </select>
             </div>
-          </div>
-
-          {/* Content: Chart + Legend */}
-          <div className="grid grid-cols-2 gap-6 items-center">
-            {/* Left: Legend */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                <p className={`text-sm ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Clothes</p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <p className={`text-sm ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Anime Figures</p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
-                <p className={`text-sm ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Marvel & DC Action Figures</p>
+            
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-2.5 top-0 h-full w-0.5 bg-gray-700"></div>
+              
+              {/* Timeline items */}
+              <div className="space-y-3">
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="relative flex items-start pl-6"
+                >
+                  <div className="absolute left-0 rounded-full w-4 h-4 bg-green-500 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                  </div>
+                  <div>
+                    <p className={`text-xs text-green-400`}>Just Now</p>
+                    <p className={`text-xs ${textPrimary}`}>New order received</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  className="relative flex items-start pl-6"
+                >
+                  <div className="absolute left-0 rounded-full w-4 h-4 bg-blue-500 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                  </div>
+                  <div>
+                    <p className={`text-xs text-blue-400`}>2h ago</p>
+                    <p className={`text-xs ${textPrimary}`}>Inventory updated</p>
+                  </div>
+                </motion.div>
               </div>
             </div>
-
-            {/* Right: Doughnut Chart */}
-            <div className="flex justify-center items-center">
-              <MiniDoughnut darkMode={darkMode} />
+            
+            <div className="flex justify-center mt-3 pt-2 border-t border-gray-700">
+              <button className={`text-xs ${textPrimary} hover:text-blue-400 transition-colors flex items-center gap-1`}>
+                View all
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
             </div>
-          </div>
+          </motion.div>
+
+          {/* Customer Feedback Card with Overall Metrics */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ backgroundColor: bgSecondary }} 
+            className={`rounded-xl p-4 shadow-lg border ${borderColor}`}
+          >
+            <div className="flex justify-between items-center mb-3">
+              <h3 className={`${textPrimary} text-sm font-semibold`}>👥 Customer Feedback</h3>
+              <span className={`${textPrimary} text-lg font-bold`}>87%</span>
+            </div>
+
+            <div className="space-y-2 mb-3">
+              {/* Satisfaction Rating */}
+              <div className="flex justify-between items-center">
+                <p className={`text-xs ${textSecondary}`}>Satisfaction</p>
+                <div className="flex items-center">
+                  <div className={`h-1.5 w-24 ${darkMode ? "bg-gray-700" : "bg-gray-300"} rounded-full overflow-hidden mr-2`}>
+                    <motion.div 
+                      className="h-full bg-green-500 rounded-full"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "87%" }}
+                      transition={{ duration: 1.2, delay: 0.3 }}
+                    />
+                  </div>
+                  <span className="text-xs text-green-400">87%</span>
+                </div>
+              </div>
+              
+              {/* Response Rate */}
+              <div className="flex justify-between items-center">
+                <p className={`text-xs ${textSecondary}`}>Response</p>
+                <div className="flex items-center">
+                  <div className={`h-1.5 w-24 ${darkMode ? "bg-gray-700" : "bg-gray-300"} rounded-full overflow-hidden mr-2`}>
+                    <motion.div 
+                      className="h-full bg-blue-500 rounded-full"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "94%" }}
+                      transition={{ duration: 1.2, delay: 0.5 }}
+                    />
+                  </div>
+                  <span className="text-xs text-blue-400">94%</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`pt-2 mt-2 border-t ${borderColor} flex justify-between items-center`}>
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((idx) => (
+                  <div 
+                    key={idx}
+                    className={`w-6 h-6 rounded-full border ${darkMode ? "border-[#1F1F1F]" : "border-white"} ${idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-green-500' : 'bg-purple-500'}`}
+                  ></div>
+                ))}
+              </div>
+              <p className={`text-xs ${textSecondary}`}>81 reviews</p>
+            </div>
+          </motion.div>
+
+          {/* Resized Expected Earning Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            style={{ backgroundColor: bgSecondary }} 
+            className={`p-4 rounded-xl border ${borderColor} shadow-lg`}
+          >
+            {/* Header */}
+            <div className="mb-3">
+              <p className={`text-xs ${textSecondary}`}>Expected Earning</p>
+              <div className="flex items-center justify-between">
+                <h2 className={`text-xl font-bold ${textPrimary}`}>₱280,000</h2>
+                <span className="text-green-400 text-xs font-medium">+2%</span>
+              </div>
+            </div>
+
+            {/* Content: Simplified Legend + Mini Chart */}
+            <div className="space-y-2 mb-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                  <p className={`text-xs ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Clothes</p>
+                </div>
+                <span className={`text-xs ${textPrimary}`}>42%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                  <p className={`text-xs ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Figures</p>
+                </div>
+                <span className={`text-xs ${textPrimary}`}>38%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                  <p className={`text-xs ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Other</p>
+                </div>
+                <span className={`text-xs ${textPrimary}`}>20%</span>
+              </div>
+            </div>
+
+            <div className={`flex justify-center pt-2 mt-2 border-t ${borderColor}`}>
+              <button className={`text-xs ${textPrimary} hover:text-blue-400 transition-colors flex items-center gap-1`}>
+                Full report
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Quick Actions Card - Full Width */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          style={{ backgroundColor: bgSecondary }} 
+          className={`rounded-xl p-6 shadow-lg border ${borderColor} col-span-1 lg:col-span-2`}
+        >
+          <h3 className={`text-base font-semibold ${textPrimary} mb-5`}>⚡ Quick Actions</h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex flex-col items-center justify-center p-4 rounded-lg ${darkMode ? 'bg-blue-900/30 hover:bg-blue-900/40' : 'bg-blue-50 hover:bg-blue-100'} transition-colors`}
+            >
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-2">
+                <ShoppingCart className="text-white w-5 h-5" />
+              </div>
+              <p className={`text-sm font-medium ${textPrimary}`}>New Order</p>
+              <p className={`text-xs ${textSecondary}`}>Process orders</p>
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex flex-col items-center justify-center p-4 rounded-lg ${darkMode ? 'bg-green-900/30 hover:bg-green-900/40' : 'bg-green-50 hover:bg-green-100'} transition-colors`}
+            >
+              <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center mb-2">
+                <Box className="text-white w-5 h-5" />
+              </div>
+              <p className={`text-sm font-medium ${textPrimary}`}>Add Product</p>
+              <p className={`text-xs ${textSecondary}`}>Create listings</p>
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex flex-col items-center justify-center p-4 rounded-lg ${darkMode ? 'bg-purple-900/30 hover:bg-purple-900/40' : 'bg-purple-50 hover:bg-purple-100'} transition-colors`}
+            >
+              <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center mb-2">
+                <Calendar className="text-white w-5 h-5" />
+              </div>
+              <p className={`text-sm font-medium ${textPrimary}`}>Schedule</p>
+              <p className={`text-xs ${textSecondary}`}>Plan events</p>
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex flex-col items-center justify-center p-4 rounded-lg ${darkMode ? 'bg-yellow-900/30 hover:bg-yellow-900/40' : 'bg-yellow-50 hover:bg-yellow-100'} transition-colors`}
+            >
+              <div className="w-10 h-10 rounded-full bg-yellow-600 flex items-center justify-center mb-2">
+                <svg className="text-white w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <p className={`text-sm font-medium ${textPrimary}`}>Messages</p>
+              <p className={`text-xs ${textSecondary}`}>View inbox</p>
+            </motion.button>
+          </div>
+          
+          <div className={`flex justify-between items-center mt-5 pt-4 border-t ${borderColor}`}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="flex items-center"
+            >
+              <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+              <span className={`text-xs ${textPrimary}`}>System status: Online</span>
+            </motion.div>
+            
+            <button className={`text-blue-400 text-xs hover:underline`}>
+              Settings
+            </button>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

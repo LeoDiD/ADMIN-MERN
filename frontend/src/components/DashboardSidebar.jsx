@@ -7,7 +7,6 @@ import {
   Pencil,
   UserCircle,
   LogOut,
-  Box,
 } from "lucide-react";
 
 const navItems = [
@@ -20,15 +19,22 @@ const navItems = [
   { icon: <LogOut />, label: "Log out", path: "/logout" },
 ];
 
+// Custom EZ Logo Component
+const EZLogo = () => (
+  <div className="font-bold text-white text-sm leading-none flex items-center justify-center">
+    <span>EZ</span>
+  </div>
+);
+
 const Sidebar = () => {
   return (
     <aside style={{ backgroundColor: "#262626" }} className="w-16 h-full flex flex-col items-center py-6 shadow-md">
       {/* Logo with company name - Circle Profile Style */}
       <div className="mb-6 flex flex-col items-center">
         <div className="bg-blue-500 rounded-full w-8 h-8 flex items-center justify-center overflow-hidden mb-1">
-          <Box className="w-5 h-5 text-white" />
+          <EZLogo />
         </div>
-        <span className="text-xs font-semibold text-white">EZ Mart</span>
+        <span className="text-xs font-semibold text-white">Mart</span>
       </div>
 
       {/* Nav */}

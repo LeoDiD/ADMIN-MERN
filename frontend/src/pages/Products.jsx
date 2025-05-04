@@ -225,11 +225,11 @@ const Products = () => {
       {/* Modal for Adding Product - Wizard Style */}
       {showModal && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
           onClick={closeModal} // Close when clicking background
         >
           <div 
-            className="relative w-full max-w-lg bg-[#262626] text-white rounded-xl shadow-lg p-6"
+            className="relative w-full max-w-lg bg-[#262626]/95 text-white rounded-xl shadow-lg p-6 backdrop-filter backdrop-blur-md border border-gray-700"
             onClick={handleModalClick} // Prevent propagation to background
           >
             

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import {
   Home,
   PackageSearch,
@@ -20,10 +20,10 @@ const navItems = [
   { icon: <LogOut />, label: "Log out", path: "/logout" },
 ];
 
-// Custom EZ Logo Component
+// Custom EZ Logo Component with SM-inspired styling
 const EZLogo = () => (
-  <div className="font-bold text-white text-sm leading-none flex items-center justify-center">
-    <span>EZ</span>
+  <div className="font-extrabold text-white leading-none flex items-center justify-center tracking-tighter">
+    <span className="italic" style={{ fontFamily: "'Arial', sans-serif", letterSpacing: "-0.05em" }}>EZ</span>
   </div>
 );
 
@@ -36,7 +36,7 @@ const Sidebar = () => {
     <aside style={{ backgroundColor: "#262626" }} className="w-16 h-full flex flex-col items-center py-6 shadow-md">
       {/* Logo with company name - Circle Profile Style */}
       <div className="mb-6 flex flex-col items-center">
-        <div className="bg-blue-500 rounded-full w-8 h-8 flex items-center justify-center overflow-hidden mb-1">
+        <div className="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center overflow-hidden mb-1">
           <EZLogo />
         </div>
         <span className="text-xs font-semibold text-white">Mart</span>
@@ -52,10 +52,10 @@ const Sidebar = () => {
             (item.path !== "/" && currentPath.startsWith(item.path));
 
           return (
-            <a
+            <Link
               key={index}
-              href={item.path}
-              className={`p-2 rounded-lg relative transition-all duration-300 ease-in-out
+              to={item.path}
+              className={`p-2 rounded-lg relative transition-all duration-300 ease-in-out group
                 ${isActive 
                   ? "text-blue-400 bg-gray-800" 
                   : "text-white hover:text-white hover:bg-gray-700"
@@ -73,10 +73,10 @@ const Sidebar = () => {
               })}
               
               {/* Label tooltip on hover */}
-              <span className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity whitespace-nowrap">
+              <span className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity whitespace-nowrap z-10">
                 {item.label}
               </span>
-            </a>
+            </Link>
           );
         })}
       </nav>

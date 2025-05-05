@@ -1,5 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Edit, Trash2, ShoppingBag, Package, AlertTriangle, Star } from 'lucide-react';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+
+// Counter Component with Framer Motion
+const Counter = ({ from = 0, to, duration = 1.5 }) => {
+  const count = useMotionValue(from);
+  const rounded = useTransform(count, latest => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState(from);
+
+  useEffect(() => {
+    const controls = animate(count, to, { duration });
+    
+    const unsubscribe = rounded.onChange(latest => {
+      setDisplayValue(latest);
+    });
+    
+    return () => {
+      controls.stop();
+      unsubscribe();
+    };
+  }, [count, rounded, to, duration]);
+
+  return <>{displayValue}</>;
+};
 
 const ManageProduct = () => {
   const products = [
@@ -15,43 +38,82 @@ const ManageProduct = () => {
       {/* Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {/* Total Products */}
-        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ backgroundColor: "#262626" }} 
+          className="p-4 rounded-lg shadow"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Products</p>
-              <p className="text-2xl font-bold mt-1">124</p>
+              <p className="text-2xl font-bold mt-1">
+                <Counter from={0} to={124} />
+              </p>
             </div>
-            <div className="bg-blue-500 bg-opacity-20 p-3 rounded-full">
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-blue-500 bg-opacity-20 p-3 rounded-full"
+            >
               <ShoppingBag className="text-white w-6 h-6" />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
         
         {/* In Stock */}
-        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          style={{ backgroundColor: "#262626" }} 
+          className="p-4 rounded-lg shadow"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">In Stock</p>
-              <p className="text-2xl font-bold mt-1">98</p>
+              <p className="text-2xl font-bold mt-1">
+                <Counter from={0} to={98} />
+              </p>
             </div>
-            <div className="bg-green-500 bg-opacity-20 p-3 rounded-full">
-              <Package className="text-white 0 w-6 h-6" />
-            </div>
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="bg-green-500 bg-opacity-20 p-3 rounded-full"
+            >
+              <Package className="text-white w-6 h-6" />
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
         
         {/* Out of Stock */}
-        <div style={{ backgroundColor: "#262626" }} className="p-4 rounded-lg shadow">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          style={{ backgroundColor: "#262626" }} 
+          className="p-4 rounded-lg shadow"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Out of Stock</p>
-              <p className="text-2xl font-bold mt-1">26</p>
+              <p className="text-2xl font-bold mt-1">
+                <Counter from={0} to={26} />
+              </p>
             </div>
-            <div className="bg-red-500 bg-opacity-20 p-3 rounded-full">
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-red-500 bg-opacity-20 p-3 rounded-full"
+            >
               <AlertTriangle className="text-white w-6 h-6" />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
       
       {/* Best Selling Products */}

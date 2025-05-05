@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PointStyleChart from '../components/PointStyleChart';
 import PolarAreaChart from '../components/PolarAreaChart'; 
 import MinimalBarChart from '../components/MinimalBarChart';
@@ -13,7 +13,17 @@ const Dashboard = () => {
   
   // Add toggle functions
   const toggleSearchInput = () => setShowSearchInput(!showSearchInput);
-  const toggleDarkMode = () => setDarkMode(!darkMode);
+  
+  // Enhanced dark mode toggle with chart refresh handling
+  const toggleDarkMode = () => {
+    setDarkMode(prevMode => !prevMode);
+    
+    // Give charts time to react to theme change
+    setTimeout(() => {
+      // Trigger a window resize event to force charts to redraw
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+  };
 
   // Define theme colors based on dark mode state
   const bgMain = darkMode ? "#1D1D1D" : "#f5f5f5";
@@ -24,6 +34,15 @@ const Dashboard = () => {
   const textSecondary = darkMode ? "text-gray-400" : "text-gray-500";
   const borderColor = darkMode ? "border-gray-700" : "border-gray-200";
   const iconColor = darkMode ? "text-white" : "text-gray-600";
+  const chartLineColor = darkMode ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)"; 
+  const timelineLineColor = darkMode ? "bg-gray-700" : "bg-gray-300";
+  const dividerColor = darkMode ? "border-gray-700" : "border-gray-300";
+
+  // Pass theme mode to any component that needs it
+  useEffect(() => {
+    // Set a global data attribute that components can check
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   return (
     <div style={{ backgroundColor: bgMain }} className={`p-6 h-full w-full overflow-y-auto ${textPrimary} transition-colors duration-300`}>
@@ -72,7 +91,7 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           style={{ backgroundColor: bgCard }} 
-          className={`p-4 rounded shadow ${borderColor}`}
+          className={`p-4 rounded shadow border ${borderColor}`}
         >
           <div className="flex justify-between items-center">
             <div className="flex flex-col">
@@ -103,7 +122,7 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ backgroundColor: bgCard }} 
-          className={`p-4 rounded shadow flex flex-col ${borderColor}`}
+          className={`p-4 rounded shadow flex flex-col border ${borderColor}`}
         >
           <div className="flex items-center mb-2">
             <div style={{ backgroundColor: bgTertiary }} className="p-1.5 rounded-md flex items-center justify-center">
@@ -127,7 +146,7 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           style={{ backgroundColor: bgCard }} 
-          className={`p-4 rounded shadow flex flex-col ${borderColor}`}
+          className={`p-4 rounded shadow flex flex-col border ${borderColor}`}
         >
           <div className="flex items-center mb-2">
             <div style={{ backgroundColor: bgTertiary }} className="p-1.5 rounded-md flex items-center justify-center">
@@ -238,7 +257,7 @@ const Dashboard = () => {
         </div>
 
         {/* Insight Section */}
-        <div className={`mt-6 border-t ${borderColor} pt-4 text-sm ${textSecondary}`}>
+        <div className={`mt-6 border-t ${dividerColor} pt-4 text-sm ${textSecondary}`}>
           <p className="mb-1">✨ Insight: More customers are leaving great feedback this month!</p>
           <p className={`text-xs ${darkMode ? "text-gray-500" : "text-gray-400"}`}>🔍 Tip: Focus on turning "Good" into "Excellent" with faster service.</p>
         </div>
@@ -246,18 +265,18 @@ const Dashboard = () => {
 
       {/* Charts Grid with Balanced Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Monthly Sales Chart */}
+        {/* Monthly Sales Chart - Added key to force remount on theme change */}
         <div style={{ backgroundColor: bgCard }} className={`p-4 rounded shadow border ${borderColor}`}>
           <span className={`${darkMode ? "text-gray-300" : "text-gray-600"} mb-2 block text-sm font-medium`}>Monthly Sales Overview</span>
-          <div className="h-40 w-full">
+          <div className="h-40 w-full" key={`point-style-chart-${darkMode ? 'dark' : 'light'}`}>
             <PointStyleChart darkMode={darkMode} />
           </div>
         </div>
         
-        {/* Customer Growth Chart */}
+        {/* Customer Growth Chart - Added key to force remount on theme change */}
         <div style={{ backgroundColor: bgCard }} className={`p-4 rounded shadow border ${borderColor}`}>
           <span className={`${darkMode ? "text-gray-300" : "text-gray-600"} mb-2 block text-sm font-medium`}>Customer Growth</span>
-          <div className="h-52 w-full">
+          <div className="h-52 w-full" key={`polar-area-chart-${darkMode ? 'dark' : 'light'}`}>
             <PolarAreaChart darkMode={darkMode} />
           </div>
         </div>
@@ -283,8 +302,8 @@ const Dashboard = () => {
             </div>
             
             <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-2.5 top-0 h-full w-0.5 bg-gray-700"></div>
+              {/* Timeline line - fixed color for light mode */}
+              <div className={`absolute left-2.5 top-0 h-full w-0.5 ${timelineLineColor}`}></div>
               
               {/* Timeline items */}
               <div className="space-y-3">
@@ -320,7 +339,7 @@ const Dashboard = () => {
               </div>
             </div>
             
-            <div className="flex justify-center mt-3 pt-2 border-t border-gray-700">
+            <div className={`flex justify-center mt-3 pt-2 border-t ${dividerColor}`}>
               <button className={`text-xs ${textPrimary} hover:text-blue-400 transition-colors flex items-center gap-1`}>
                 View all
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -377,7 +396,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className={`pt-2 mt-2 border-t ${borderColor} flex justify-between items-center`}>
+            <div className={`pt-2 mt-2 border-t ${dividerColor} flex justify-between items-center`}>
               <div className="flex -space-x-2">
                 {[1, 2, 3].map((idx) => (
                   <div 
@@ -432,7 +451,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className={`flex justify-center pt-2 mt-2 border-t ${borderColor}`}>
+            <div className={`flex justify-center pt-2 mt-2 border-t ${dividerColor}`}>
               <button className={`text-xs ${textPrimary} hover:text-blue-400 transition-colors flex items-center gap-1`}>
                 Full report
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -505,7 +524,7 @@ const Dashboard = () => {
             </motion.button>
           </div>
           
-          <div className={`flex justify-between items-center mt-5 pt-4 border-t ${borderColor}`}>
+          <div className={`flex justify-between items-center mt-5 pt-4 border-t ${dividerColor}`}>
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}

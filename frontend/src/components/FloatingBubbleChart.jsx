@@ -1,0 +1,128 @@
+import React, { useEffect, useRef } from 'react';
+
+const FloatingBubbleChart = ({ darkMode, percentage = 12 }) => {
+  const canvasRef = useRef(null);
+  const dataSetColor = '#00FF96'; // New consistent color
+  
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Fixed data values - different from the other charts for variety
+    const values = [7, 4, 9, 5, 8, 6];
+    
+    // Draw the non-aligned bars with stepped pattern
+    for (let i = 0; i < values.length; i++) {
+      const x = 5 + (i * 6);
+      
+      // Create a zigzag pattern
+      const offset = i % 3 === 0 ? 12 : (i % 3 === 1 ? 0 : 6); 
+      
+      // Adjust height and position based on value
+      const value = values[i];
+      const height = value * 3; // Scale to fit canvas
+      
+      // Y-position varies with zigzag pattern
+      const y = 38 - height - offset;
+      const barWidth = 4;
+      
+      // Draw bar with rounded corners
+      const radius = 1.5;
+      
+      // Top section with rounded corners
+      ctx.beginPath();
+      
+      // Top left corner
+      ctx.moveTo(x, y + radius);
+      ctx.arcTo(x, y, x + radius, y, radius);
+      
+      // Top right corner
+      ctx.lineTo(x + barWidth - radius, y);
+      ctx.arcTo(x + barWidth, y, x + barWidth, y + radius, radius);
+      
+      // Bottom right corner
+      ctx.lineTo(x + barWidth, y + height - radius);
+      ctx.arcTo(x + barWidth, y + height, x + barWidth - radius, y + height, radius);
+      
+      // Bottom left corner
+      ctx.lineTo(x + radius, y + height);
+      ctx.arcTo(x, y + height, x, y + height - radius, radius);
+      
+      ctx.closePath();
+      
+      // Gradient fill with new color
+      const gradient = ctx.createLinearGradient(0, y, 0, y + height);
+      gradient.addColorStop(0, '#00FF96'); // Bright green at top
+      gradient.addColorStop(1, 'rgba(0, 255, 150, 0.7)'); // Faded green at bottom
+      
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      
+      // Add subtle glow effect
+      ctx.shadowColor = 'rgba(0, 255, 150, 0.5)';
+      ctx.shadowBlur = 3;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      
+      // Connect to baseline with thin line for some bars
+      if (i % 2 === 0) {
+        ctx.beginPath();
+        ctx.moveTo(x + barWidth/2, y + height);
+        ctx.lineTo(x + barWidth/2, 45);
+        ctx.strokeStyle = 'rgba(0, 255, 150, 0.2)';
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+        
+        // Add small dot at the end of the line
+        ctx.beginPath();
+        ctx.arc(x + barWidth/2, 45, 1, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 255, 150, 0.3)';
+        ctx.fill();
+      }
+      
+      // Reset shadow for next iteration
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+    }
+    
+  }, [darkMode]);
+  
+  return (
+    <div style={{ 
+      position: 'relative', 
+      height: '50px',
+      width: '40px',
+      marginLeft: 'auto',
+      marginRight: '2px',
+      marginTop: '8px'
+    }}>
+      {/* Percentage indicator */}
+      <div 
+        style={{ 
+          position: 'absolute', 
+          top: '-16px',
+          right: '0',
+          fontSize: '10px',
+          fontWeight: '500',
+          color: percentage > 0 ? dataSetColor : '#ff4d4d'
+        }}
+      >
+        {percentage > 0 ? `+${percentage}%` : `${percentage}%`}
+      </div>
+      
+      <canvas 
+        ref={canvasRef} 
+        width="40" 
+        height="50" 
+        style={{ width: '100%', height: '100%' }}
+      />
+    </div>
+  );
+};
+
+export default FloatingBubbleChart;

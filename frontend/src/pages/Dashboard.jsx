@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PointStyleChart from '../components/PointStyleChart';
 import PolarAreaChart from '../components/PolarAreaChart'; 
 import MinimalBarChart from '../components/MinimalBarChart';
 import MiniDoughnut from '../components/MiniDoughnutChart';
+import FloatingBubbleChart from '../components/FloatingBubbleChart';
+import QuantumBarChart from '../components/QuantumBarChart';
 import { motion } from "framer-motion";
 import { PhilippinePeso, ShoppingCart, Box, Search, Sun, Moon, LayoutDashboard, Calendar, Star, ThumbsUp, Activity } from "lucide-react";
 
@@ -122,23 +124,30 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ backgroundColor: bgCard }} 
-          className={`p-4 rounded shadow flex flex-col border ${borderColor}`}
+          className={`p-4 rounded shadow border ${borderColor}`}
         >
-          <div className="flex items-center mb-2">
-            <div style={{ backgroundColor: bgTertiary }} className="p-1.5 rounded-md flex items-center justify-center">
-              <ShoppingCart className={`w-4 h-4 ${iconColor}`} />
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col">
+              <div className="flex items-center mb-2">
+                <div style={{ backgroundColor: bgTertiary }} className="p-1.5 rounded-md flex items-center justify-center">
+                  <ShoppingCart className={`w-4 h-4 ${iconColor}`} />
+                </div>
+                <span className={`text-xl font-medium ml-2 ${textPrimary}`}>Orders</span>
+              </div>
+              <motion.span 
+                className={`text-4xl font-bold ${textPrimary}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <Counter from={0} to={24} />
+              </motion.span>
+              <span className={`text-sm ${textSecondary}`}>Last 30 days</span>
             </div>
-            <span className={`text-xl font-medium ml-2 ${textPrimary}`}>Orders</span>
+            <div className="w-20 h-14 flex items-center">
+              <FloatingBubbleChart darkMode={darkMode} />
+            </div>
           </div>
-          <motion.span 
-            className={`text-4xl font-bold ${textPrimary}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Counter from={0} to={24} />
-          </motion.span>
-          <span className={`text-sm ${textSecondary}`}>Last 30 days</span>
         </motion.div>
         
         <motion.div 
@@ -146,23 +155,30 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           style={{ backgroundColor: bgCard }} 
-          className={`p-4 rounded shadow flex flex-col border ${borderColor}`}
+          className={`p-4 rounded shadow border ${borderColor}`}
         >
-          <div className="flex items-center mb-2">
-            <div style={{ backgroundColor: bgTertiary }} className="p-1.5 rounded-md flex items-center justify-center">
-              <Box className={`w-4 h-4 ${iconColor}`} />
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col">
+              <div className="flex items-center mb-2">
+                <div style={{ backgroundColor: bgTertiary }} className="p-1.5 rounded-md flex items-center justify-center">
+                  <Box className={`w-4 h-4 ${iconColor}`} />
+                </div>
+                <span className={`text-xl font-medium ml-2 ${textPrimary}`}>Products</span>
+              </div>
+              <motion.span 
+                className={`text-4xl font-bold ${textPrimary}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <Counter from={0} to={45} />
+              </motion.span>
+              <span className={`text-sm ${textSecondary}`}>In stock</span>
             </div>
-            <span className={`text-xl font-medium ml-2 ${textPrimary}`}>Products</span>
+            <div className="w-20 h-14 flex items-center">
+              <QuantumBarChart darkMode={darkMode} />
+            </div>
           </div>
-          <motion.span 
-            className={`text-4xl font-bold ${textPrimary}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            <Counter from={0} to={45} />
-          </motion.span>
-          <span className={`text-sm ${textSecondary}`}>In stock</span>
         </motion.div>
       </div>
 
